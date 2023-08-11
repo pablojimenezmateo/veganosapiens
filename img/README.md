@@ -1,0 +1,1 @@
+Use a web service to compress the svg, in this case vecta.io
