@@ -4,18 +4,101 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: #017f00;
+  --primary-light-color: #00af00;
+  --primary-dark-color: #002f00;
+  --secondary-color: #dbe7d2;
+  --secondary-light-color: #f1f7ed;
+  --text-color: #3b3b3b;
+}
+
+/* Global styles */
 body {
   margin: 10px;
-  background-color: #daecce;
-  color: #3b3b3b;
+  margin-left: 15%;
+  margin-right: 15%;
+  color: var(--text-color);
 }
 
-/*Tablet*/
+button {
+  border: 1px solid var(--primary-color);
+  border-radius: 3px;
+  padding: 5px;
+  background-color: white;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+.card {
+  background-color: var(--secondary-light-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  padding: 2%;
+}
+
+hr {
+  width: 100%;
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header .logo img {
+  width: 1.5rem;
+}
+
+.header .logo h1 {
+  display: inline;
+  margin-left: -7px;
+}
+
+.header .nav-container {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.header nav {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+  justify-content: center;
+}
+
+.header a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: monospace;
+  margin-right: 0.5rem;
+  color: var(--primary-color);
+}
+
+.header a:visited {
+  color: var(--primary-dark-color);
+}
+
+.header a:hover,
+a:focus {
+  color: var(--primary-light-color);
+  transition: transform 0.1s;
+  transform: scale(1.1);
+}
+
+/* Recipe */
+.recipe-container {
+  display: flex;
+  justify-content: center;
+}
+
+/*Desktop/tablet*/
 @media screen and (min-width: 768px) {
-}
-
-/*Desktop*/
-@media screen and (min-width: 1024px) {
   .recipe {
     display: grid;
     column-gap: 3rem;
