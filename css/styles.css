@@ -68,7 +68,7 @@ hr {
 .header nav {
   display: flex;
   flex-wrap: wrap;
-  row-gap: 0.5rem;
+  row-gap: 1rem;
   justify-content: center;
 }
 
@@ -76,7 +76,7 @@ hr {
   text-decoration: none;
   text-transform: uppercase;
   font-family: monospace;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
   color: var(--primary-color);
 }
 
@@ -99,6 +99,14 @@ a:focus {
 
 /*Desktop/tablet*/
 @media screen and (min-width: 768px) {
+  .header nav {
+    row-gap: 0.5rem;
+  }
+
+  .header a {
+    margin-right: 0.5rem;
+  }
+
   .recipe {
     display: grid;
     column-gap: 3rem;
