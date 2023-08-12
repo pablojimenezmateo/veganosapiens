@@ -1,16 +1,8 @@
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
-
 :root {
   --primary-color: #017f00;
   --primary-light-color: #00af00;
-  --primary-dark-color: #002f00;
-  --secondary-color: #dbe7d2;
-  --secondary-light-color: #f1f7ed;
   --text-color: #3b3b3b;
+  --text-decoration-color: #cecdcd;
 }
 
 /* Global styles */
@@ -21,26 +13,13 @@ body {
   color: var(--text-color);
 }
 
-button {
-  border: 1px solid var(--primary-color);
-  border-radius: 3px;
-  padding: 5px;
-  background-color: white;
+h1 {
+  margin-top: 0;
+  font-size: 2rem;
 }
 
-button:hover {
-  background-color: var(--secondary-color);
-}
-
-.card {
-  background-color: var(--secondary-light-color);
-  border: 1px solid var(--primary-color);
-  border-radius: 5px;
-  padding: 2%;
-}
-
-hr {
-  width: 100%;
+h2 {
+  font-size: 1.2rem;
 }
 
 /* Header */
@@ -52,6 +31,12 @@ hr {
 
 .header .logo img {
   width: 1.5rem;
+}
+
+.header .logo p {
+  display: inline;
+  font-size: 1.5rem;
+  margin-left: -10px;
 }
 
 .header .logo h1 {
@@ -68,27 +53,51 @@ hr {
 .header nav {
   display: flex;
   flex-wrap: wrap;
-  row-gap: 1rem;
+  gap: 1rem;
   justify-content: center;
 }
 
-.header a {
+.header a,
+.header a:visited {
   text-decoration: none;
   text-transform: uppercase;
   font-family: monospace;
-  margin-right: 1rem;
   color: var(--primary-color);
 }
 
-.header a:visited {
-  color: var(--primary-dark-color);
-}
-
 .header a:hover,
-a:focus {
+.header a:focus {
   color: var(--primary-light-color);
   transition: transform 0.1s;
   transform: scale(1.1);
+}
+
+/* Main web recipe list */
+.recipe-list ul {
+  padding-left: 1rem;
+}
+.recipe-list li {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.recipe-list a,
+.recipe-list a:hover,
+.recipe-list a:visited,
+.recipe-list a:focus {
+  color: var(--text-color);
+  text-transform: uppercase;
+  font-family: monospace;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--text-decoration-color);
+}
+
+.recipe-list a:hover,
+a:focus {
+  transition: text-decoration-color 0.5s, color 0.5s;
+  text-decoration-color: black;
+  color: black;
 }
 
 /* Recipe */
