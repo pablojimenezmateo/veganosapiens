@@ -22,6 +22,25 @@ h2 {
   font-size: 1.2rem;
 }
 
+a,
+a:hover,
+a:visited,
+a:focus {
+  color: var(--text-color);
+  text-transform: uppercase;
+  font-family: monospace;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--text-decoration-color);
+}
+
+a:hover,
+a:focus {
+  transition: text-decoration-color 0.5s, color 0.5s;
+  text-decoration-color: black;
+  color: black;
+}
+
 /* Header */
 .header {
   display: flex;
@@ -79,25 +98,6 @@ h2 {
 .recipe-list li {
   list-style: none;
   margin-bottom: 1rem;
-}
-
-.recipe-list a,
-.recipe-list a:hover,
-.recipe-list a:visited,
-.recipe-list a:focus {
-  color: var(--text-color);
-  text-transform: uppercase;
-  font-family: monospace;
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 5px;
-  text-decoration-color: var(--text-decoration-color);
-}
-
-.recipe-list a:hover,
-a:focus {
-  transition: text-decoration-color 0.5s, color 0.5s;
-  text-decoration-color: black;
-  color: black;
 }
 
 /* Recipe */
