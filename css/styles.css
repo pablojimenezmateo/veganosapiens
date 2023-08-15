@@ -19,6 +19,7 @@ h1 {
 }
 
 h2 {
+  margin-top: 0;
   font-size: 1.2rem;
 }
 
@@ -94,6 +95,7 @@ a:focus {
 /* Main web recipe list */
 .recipe-list ul {
   padding-left: 1rem;
+  margin-bottom: 2rem;
 }
 .recipe-list li {
   list-style: none;
