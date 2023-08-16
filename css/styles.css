@@ -108,7 +108,7 @@ a:focus {
   justify-content: center;
 }
 
-/*Desktop/tablet*/
+/* Tablet */
 @media screen and (min-width: 768px) {
   .header nav {
     row-gap: 0.5rem;
@@ -118,6 +118,15 @@ a:focus {
     margin-right: 0.5rem;
   }
 
+  /* Show 2 columns landing */
+  .recipe-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px) {
   .recipe {
     display: grid;
     column-gap: 3rem;
@@ -130,5 +139,11 @@ a:focus {
 
   .comments {
     grid-column: 1/3;
+  }
+
+  /* Show 3 columns landing */
+  .recipe-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
