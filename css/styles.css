@@ -116,6 +116,14 @@ li {
   justify-content: center;
 }
 
+/* Notes */
+.note-container {
+  display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
+  justify-content: center;
+}
+
 /* Tablet */
 @media screen and (min-width: 768px) {
   .header nav {
