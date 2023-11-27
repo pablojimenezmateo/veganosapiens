@@ -178,7 +178,7 @@ body {
   background-color: #ffffff;
   width: 100px;
   height: 100px;
-  opacity: 0.6;
+  opacity: 0.3;
   clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
