@@ -1,0 +1,198 @@
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(#0f2129, #47334a);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Original code is from https://stackoverflow.com/questions/59922092/how-to-make-it-rain-everywhere */
+
+.rain-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+
+  /* The water droplet is an ellipse with a radial gradient */
+  /* By using a radial gradient, the droplet "repeats" to fill the screen */
+  --s: 2px 8px;
+
+  /* Color of the water droplet*/
+  --c: #ccc;
+
+  /* Angle of the pattern */
+  --a: -7deg;
+
+  /* Size of the pattern */
+  /* Note that the pattern will be repeated to fill the screen */
+  --w: 53px;
+  --h: 55px;
+}
+
+/* We will add 2 layers of rain, in html:before and html:after */
+.rain-container:before,
+.rain-container:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: -20%;
+  left: -20%;
+  /* Should be bigger than (100% + var(--h)) so it fills the top and bottom */
+  height: calc(100% + var(--h) + 10px);
+  background: radial-gradient(var(--s), var(--c) 100%, transparent 100%) -12px 3px,
+    radial-gradient(var(--s), var(--c) 100%, transparent 100%) 17px 0,
+    radial-gradient(var(--s), var(--c) 100%, transparent 100%) 6px 12px,
+    radial-gradient(var(--s), var(--c) 100%, transparent 100%) 24px 23px,
+    radial-gradient(var(--s), var(--c) 100%, transparent 100%) 39px 30px,
+    radial-gradient(var(--s), var(--c) 100%, transparent 100%) 5px 43px;
+  background-size: var(--w) var(--h);
+  animation: rainAnimation 0.2s linear infinite;
+  transform: skew(var(--a));
+}
+
+/* We need to change the properties of the second layer for it to show */
+.rain-container:after {
+  --h: 70px;
+  --w: 61px;
+  --a: -5deg;
+}
+
+/* This is the animation that is attached to each pattern of droplets */
+@keyframes rainAnimation {
+  to {
+    /* The height has to be the same as the pattern for it to look continuous */
+    transform: skew(var(--a)) translateY(var(--h));
+  }
+}
+
+.clouds-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  /* The size of the cloud */
+  --w: 30%;
+  --h: 30%;
+
+  /* Color of the cloud */
+  --c: #595959;
+
+  /* Opacity of the cloud */
+  --o: 0.8;
+
+  /* Margin left */
+  --ml: 0%;
+
+  /* Margin top */
+  --mt: 0%;
+}
+
+/* Each cloud */
+.clouds-container > .cloud {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  opacity: var(--o);
+  width: var(--w);
+  height: var(--h);
+  background-color: var(--c);
+  animation: cloudAnimation 10s linear infinite;
+}
+
+/* Different properties for each cloud */
+.clouds-container > .cloud:nth-child(1) {
+  --w: 60%;
+  --h: 60%;
+  --ml: -30%;
+  --mt: -70%;
+}
+.clouds-container > .cloud:nth-child(2) {
+  --w: 90%;
+  --h: 90%;
+  --ml: -15%;
+  --mt: -80%;
+  animation: cloudAnimation 8s linear infinite;
+}
+.clouds-container > .cloud:nth-child(3) {
+  --w: 80%;
+  --h: 80%;
+  --ml: 10%;
+  --mt: -85%;
+  animation: cloudAnimation 7s linear infinite;
+}
+.clouds-container > .cloud:nth-child(4) {
+  --w: 75%;
+  --h: 75%;
+  --ml: 60%;
+  --mt: -77%;
+  animation: cloudAnimation 15s linear infinite;
+}
+.clouds-container > .cloud:nth-child(5) {
+  --w: 60%;
+  --h: 60%;
+  --ml: 90%;
+  --mt: -60%;
+}
+
+/* This is the animation that is attached to each cloud */
+@keyframes cloudAnimation {
+  0% {
+    /* The height has to be the same as the pattern for it to look continuous */
+    transform: translateX(var(--ml)) translateY(var(--mt)) scale(1);
+  }
+  50% {
+    /* The height has to be the same as the pattern for it to look continuous */
+    transform: translateX(calc(var(--ml) + 20%))
+      translateY(calc(var(--mt) + 5%)) scale(1.1);
+  }
+  100% {
+    /* The height has to be the same as the pattern for it to look continuous */
+    transform: translateX(var(--ml)) translateY(var(--mt)) scale(1);
+  }
+}
+
+.audio-player {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.audio-player > audio:hover {
+  transform: scale(1.05);
+  transition: transform 0.1s;
+}
+
+.play,
+.pause {
+  background-color: #ffffff;
+  width: 100px;
+  height: 100px;
+  opacity: 0.6;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.pause {
+  clip-path: polygon(
+    0% 0%,
+    0% 100%,
+    33% 100%,
+    33% 0,
+    66% 0,
+    66% 100%,
+    33% 100%,
+    33% 100%,
+    100% 100%,
+    100% 0%
+  );
+}
