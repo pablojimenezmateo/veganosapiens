@@ -36,7 +36,7 @@ function onPlayPauseButtonClick() {
   }
 }
 
-function stopAudio(duration = 3000) {
+function stopAudio(duration = 1000) {
   var audio = document.getElementById("audio");
   let interval = 50;
   let currentVolume = audio.volume;
@@ -54,7 +54,7 @@ function stopAudio(duration = 3000) {
   }, interval);
 }
 
-function startAudio(duration = 3000) {
+function startAudio(duration = 1000) {
   var audio = document.getElementById("audio");
   var volumeSlider = document.getElementById("volume-slider");
   let interval = 50;
