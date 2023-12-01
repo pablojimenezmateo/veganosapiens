@@ -157,6 +157,18 @@ function createClouds() {
   cloudContainer.appendChild(fragment);
 }
 
+function flashLighting(duration = 0.5, iterations = 5) {
+  let lightingSky = document.getElementById("lighting-sky");
+
+  // Set the full animation shorthand property
+  lightingSky.style.animation = `lightingAnimation ${duration}s linear ${iterations}`;
+
+  // Reset the animation at the end
+  setTimeout(() => {
+    lightingSky.style.animation = "none";
+  }, duration * iterations * 1000); // Convert seconds to milliseconds
+}
+
 onload = function () {
   // Set the volume to 0 to have the nice fade in effect
   var audio = document.getElementById("audio");
