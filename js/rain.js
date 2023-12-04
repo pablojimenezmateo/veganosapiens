@@ -268,7 +268,7 @@ function playBellSound(iterations = 1) {
 // A function that plays the bell sound every hour o'clock
 function playBellSoundEveryHour() {
   let date = new Date();
-  let hours = date.getHours();
+  let hours = date.getHours() ? date.getHours() % 12 : 12;
   let minutes = date.getMinutes();
   let seconds = date.getSeconds();
 
