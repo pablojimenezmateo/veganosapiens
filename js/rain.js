@@ -1,3 +1,4 @@
+/* General */
 // Listen for the play/pause button click
 document
   .getElementById("play-pause-button")
@@ -8,6 +9,23 @@ document
   .getElementById("volume-slider")
   .addEventListener("input", onVolumeSliderChange);
 
+onload = function () {
+  // Set the volume to 0 to have the nice fade in effect
+  var audio = document.getElementById("audio");
+  audio.volume = 0;
+
+  // Create the HTML elements
+  createDroplets();
+  createClouds();
+
+  // Play thunder sounds
+  playThunderSounds();
+
+  // Play the bell sound every hour
+  playBellSoundEveryHour();
+};
+
+/* Audio */
 function onVolumeSliderChange() {
   var audio = document.getElementById("audio");
   audio.volume = this.value / 100;
@@ -16,7 +34,7 @@ function onVolumeSliderChange() {
 function onPlayPauseButtonClick() {
   var audio = document.getElementById("audio");
   if (audio.paused) {
-    startAudio();
+    startRainSound();
 
     // Remove class play and add class pause
     this.classList.remove("play");
@@ -25,7 +43,7 @@ function onPlayPauseButtonClick() {
     // Start the droplets
     startDroplets();
   } else {
-    stopAudio();
+    stopRainSound();
 
     // Remove class pause and add class play
     this.classList.remove("pause");
@@ -36,7 +54,7 @@ function onPlayPauseButtonClick() {
   }
 }
 
-function stopAudio(duration = 1000) {
+function stopRainSound(duration = 1000) {
   var audio = document.getElementById("audio");
   let interval = 50;
   let currentVolume = audio.volume;
@@ -54,7 +72,7 @@ function stopAudio(duration = 1000) {
   }, interval);
 }
 
-function startAudio(duration = 1000) {
+function startRainSound(duration = 1000) {
   var audio = document.getElementById("audio");
   var volumeSlider = document.getElementById("volume-slider");
   let interval = 50;
@@ -74,6 +92,7 @@ function startAudio(duration = 1000) {
   }, interval);
 }
 
+/* Rain */
 function stopDroplets() {
   let droplets = document.querySelectorAll(".droplet");
 
@@ -130,6 +149,7 @@ function createDroplets() {
   rainContainer.appendChild(fragment);
 }
 
+/* Clouds */
 function createClouds() {
   let cloud;
   let counter = 5;
@@ -157,7 +177,8 @@ function createClouds() {
   cloudContainer.appendChild(fragment);
 }
 
-function flashLighting(duration = 0.5, iterations = 5) {
+/* Lighting */
+function flashLighting(duration = 0.1, iterations = 5) {
   let lightingSky = document.getElementById("lighting-sky");
 
   // Set the full animation shorthand property
@@ -169,12 +190,96 @@ function flashLighting(duration = 0.5, iterations = 5) {
   }, duration * iterations * 1000); // Convert seconds to milliseconds
 }
 
-onload = function () {
-  // Set the volume to 0 to have the nice fade in effect
-  var audio = document.getElementById("audio");
-  audio.volume = 0;
-
-  // Create the HTML elements
-  createDroplets();
-  createClouds();
+// Create a dictionary with the thunder sounds
+let thunderSounds = {
+  0: { file: "/media/sounds/thunder0.ogg", lighthings: 3, duration: 0.1 },
+  1: { file: "/media/sounds/thunder1.ogg", lighthings: 1, duration: 0.2 },
+  2: { file: "/media/sounds/thunder2.ogg", lighthings: 2, duration: 0.2 },
+  3: { file: "/media/sounds/thunder3.ogg", lighthings: 2, duration: 0.1 },
+  4: { file: "/media/sounds/thunder4.ogg", lighthings: 2, duration: 0.1 },
+  5: { file: "/media/sounds/thunder5.ogg", lighthings: 1, duration: 0.3 },
+  6: { file: "/media/sounds/thunder6.ogg", lighthings: 1, duration: 0.3 },
+  7: { file: "/media/sounds/thunder7.ogg", lighthings: 4, duration: 0.1 },
+  8: { file: "/media/sounds/thunder8.ogg", lighthings: 2, duration: 0.2 },
+  9: { file: "/media/sounds/thunder9.ogg", lighthings: 2, duration: 0.2 },
+  10: { file: "/media/sounds/thunder10.ogg", lighthings: 1, duration: 0.1 },
 };
+
+function playThunderSound(volume = 1) {
+  // Get a random number between 0 and 10
+  let randomNumber = Math.floor(Math.random() * 11);
+
+  // Get the thunder sound from the dictionary
+  let thunderSound = thunderSounds[randomNumber];
+
+  // Play the sound
+  let audio = new Audio(thunderSound.file);
+  audio.volume = volume;
+  audio.play();
+
+  // Flash the lighting
+  flashLighting(thunderSound.duration, thunderSound.lighthings);
+}
+
+// Function that plays thunder sounds until the rain stops
+function playThunderSounds() {
+  // Get the audio element
+  let audio = document.getElementById("audio");
+
+  // Play a thunder sound if the audio is playing
+  if (!audio.paused) {
+    playThunderSound(audio.volume);
+  }
+
+  // Play the next thunder sound after a random delay
+  let minDelay = 60 * 1000;
+  let maxDelay = 180 * 1000;
+  let delay = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
+
+  console.log("Next thunder sound in " + delay / 1000 + " seconds");
+  setTimeout(playThunderSounds, delay);
+}
+
+/* Church */
+// Play the bell sound n times
+function playBellSound(iterations = 1) {
+  // Get the audio element
+  let audio = document.getElementById("audio");
+
+  if (audio.paused) {
+    return;
+  }
+
+  // Play the sound
+  let church_audio = new Audio("/media/sounds/church_bell.mp3");
+  church_audio.volume = audio.volume;
+  church_audio.play();
+
+  let bellDelay = 3000;
+
+  // Play the sound again after a delay
+  setTimeout(() => {
+    if (iterations > 1) {
+      playBellSound(iterations - 1);
+    }
+  }, bellDelay);
+}
+
+// A function that plays the bell sound every hour o'clock
+function playBellSoundEveryHour() {
+  let date = new Date();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let seconds = date.getSeconds();
+
+  // Calculate the delay until the next hour
+  let delay = (60 - minutes) * 60 * 1000 + (60 - seconds) * 1000;
+
+  // Play the bell sound after the delay
+  console.log("Next bell sound in " + delay / 60000 + " minutes");
+  setTimeout(() => {
+    playBellSound(hours);
+    // Play the bell sound every hour
+    setInterval(playBellSound, 60 * 60 * 1000);
+  }, delay);
+}
