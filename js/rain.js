@@ -22,7 +22,7 @@ onload = function () {
   playThunderSounds();
 
   // Play the bell sound every hour
-  playBellSoundEveryHour();
+  playBellSoundEveryHour(true);
 };
 
 /* Audio */
@@ -266,19 +266,36 @@ function playBellSound(iterations = 1) {
 }
 
 // A function that plays the bell sound every hour o'clock
-function playBellSoundEveryHour() {
+function playBellSoundEveryHour(isFirstCall = false) {
   let date = new Date();
-  let hours = date.getHours() ? date.getHours() % 12 : 12;
+  let hours = date.getHours();
   let minutes = date.getMinutes();
   let seconds = date.getSeconds();
 
+  // If this is the first call, we need to use the next hour
+  // if not when loading the webpage at 15:30, there would be 3 bells
+  if (isFirstCall) {
+    hours++;
+  }
+
+  hours = hours % 12 ? hours % 12 : 12;
+
   // Calculate the delay until the next hour
-  let delay = (60 - minutes) * 60 * 1000 + (60 - seconds) * 1000;
+  // Note: There is an extra 5 seconds delay, this is to make sure that the
+  // next call to this method is past the next hour so that hours are correct
+  let delay = (60 - minutes) * 60 * 1000 + (60 - seconds) * 1000 + 5 * 1000;
 
   // Play the bell sound after the delay
-  console.log("Next bell sound in " + delay / 60000 + " minutes");
+  console.log(
+    "Next bell sound in " +
+      delay / 60000 +
+      " minutes, " +
+      hours +
+      " bells will sound"
+  );
   setTimeout(() => {
     playBellSound(hours);
+
     // Play the bell sound every hour
     playBellSoundEveryHour();
   }, delay);
