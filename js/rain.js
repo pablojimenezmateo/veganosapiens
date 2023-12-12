@@ -280,6 +280,6 @@ function playBellSoundEveryHour() {
   setTimeout(() => {
     playBellSound(hours);
     // Play the bell sound every hour
-    setInterval(playBellSound, 60 * 60 * 1000);
+    setInterval(playBellSoundEveryHour, 60 * 60 * 1000);
   }, delay);
 }
