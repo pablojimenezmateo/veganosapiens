@@ -270,14 +270,12 @@ function playBellSoundEveryHour() {
   let date = new Date();
   let minutes = date.getMinutes();
 
-  // If the minutes are not 0, do nothing
-  if (minutes != 0) {
-    return;
+  // Only play the bell sound if it is o'clock
+  if (minutes == 0) {
+    let hours = date.getHours();
+    hours = hours % 12 ? hours % 12 : 12;
+    playBellSound(hours);
   }
-
-  let hours = date.getHours();
-  hours = hours % 12 ? hours % 12 : 12;
-  playBellSound(hours);
 
   // Check again in 1 minute
   setTimeout(playBellSoundEveryHour, 60 * 1000);
