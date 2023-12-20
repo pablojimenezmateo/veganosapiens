@@ -2,9 +2,9 @@
 
 URL: [https://veganosapiens.com](https://veganosapiens.com)
 
-This is a personal (vegan) recipe website made purely in HTML and CSS. The goal is for each page to be [less than 14kb](https://endtimes.dev/why-your-website-should-be-under-14kb-in-size/) so it is as fast as possible. Since I do not plan to monetize this webpage, I got rid of all the extra SEO work.
+A fast, personal vegan recipe website made purely in HTML, CSS and JS (only for rain.html).
 
-Still, it gets a perfect score in [Google's Pagespeed Insights](https://pagespeed.web.dev/analysis/https-veganosapiens-com/mjtbm3pxvi?form_factor=mobile).
+It gets a perfect score in [Google's Pagespeed Insights](https://pagespeed.web.dev/analysis/https-veganosapiens-com/mjtbm3pxvi?form_factor=mobile).
 
 We use it quite often to cook our favourite recipes again and again.
 
