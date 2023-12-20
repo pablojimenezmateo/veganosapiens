@@ -57,6 +57,14 @@ li {
   align-items: center;
 }
 
+.header .logo {
+  /* I want the logo to have 0 formatting */
+  color: black !important;
+  text-transform: none !important;
+  font-family: inherit !important;
+  transform: none !important;
+}
+
 .header .logo img {
   width: 1.5rem;
 }
