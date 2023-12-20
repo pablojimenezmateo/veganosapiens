@@ -124,6 +124,11 @@ li {
   justify-content: center;
 }
 
+.recipe-title {
+  display: flex;
+  justify-content: center;
+}
+
 /* Notes */
 .note-container {
   display: flex;
@@ -142,6 +147,7 @@ li {
   max-width: 100%;
   height: auto;
   margin-bottom: 1rem;
+  border-radius: 5%;
 }
 
 /* Tablet */
