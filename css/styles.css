@@ -50,6 +50,13 @@ li {
   margin-bottom: 1rem;
 }
 
+.advanced:after {
+  content: "AVANZADA";
+  font-size: 60%;
+  vertical-align: super;
+  color: var(--primary-color);
+}
+
 /* Header */
 .header {
   display: flex;
