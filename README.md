@@ -2,9 +2,7 @@
 
 URL: [https://veganosapiens.com](https://veganosapiens.com)
 
-A fast, personal vegan recipe website made purely in HTML, CSS and JS (only for rain.html).
-
-It gets a perfect score in [Google's Pagespeed Insights](https://pagespeed.web.dev/analysis/https-veganosapiens-com/mjtbm3pxvi?form_factor=mobile).
+A fast, personal handmade vegan recipe website.
 
 We use it quite often to cook our favourite recipes again and again.
 
