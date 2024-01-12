@@ -57,7 +57,7 @@ li {
 
 .advanced:after {
   content: "AVANZADA";
-  font-size: 60%;
+  font-size: 50%;
   vertical-align: super;
   color: var(--primary-color);
 }
