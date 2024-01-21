@@ -1,6 +1,7 @@
 :root {
   --primary-color: #017f00;
   --primary-light-color: #00af00;
+  --advanced-color: #ff0000;
   --text-color: #3b3b3b;
   --text-decoration-color: #cecdcd;
 }
@@ -57,6 +58,13 @@ li {
 
 .advanced:after {
   content: "AVANZADA";
+  font-size: 50%;
+  vertical-align: super;
+  color: var(--advanced-color);
+}
+
+.new:after {
+  content: "NUEVA";
   font-size: 50%;
   vertical-align: super;
   color: var(--primary-color);
