@@ -113,6 +113,37 @@ li {
   justify-content: center;
 }
 
+.header .search-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  position: relative;
+}
+
+.header .search-container input {
+  padding: 0.3rem;
+  padding-right: 2rem;
+  border: 1px solid var(--text-color);
+  border-radius: 10px;
+}
+
+#clearSearch {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(280%);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--text-color);
+  /* Used to make the "hitbox" bigger*/
+  padding-left: 1rem;
+  margin-left: 1rem;
+}
+
+input[type="search"]:focus {
+  outline: 1px solid var(--primary-light-color);
+}
+
 .header a,
 .header a:visited {
   text-decoration: none;
@@ -126,6 +157,10 @@ li {
   color: var(--primary-light-color);
   transition: transform 0.1s;
   transform: scale(1.1);
+}
+
+.is-hidden {
+  display: none;
 }
 
 /* Main web recipe list */

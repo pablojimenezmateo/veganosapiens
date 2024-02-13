@@ -19,6 +19,7 @@
     <title>Veganosapiens</title>
 
     <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/search.js" defer></script>
   </head>
   <body>
     <div class="header">
@@ -38,6 +39,15 @@
           <a href="/notas.html">Notas</a>
           <a href="/veganismo.html">Veganismo</a>
         </nav>
+        <div class="search-container">
+          <input
+            id="search"
+            type="search"
+            oninput="search()"
+            placeholder="Buscar receta"
+          />
+          <button id="clearSearch" type="button">X</button>
+        </div>
         <hr />
       </div>
     </div>
