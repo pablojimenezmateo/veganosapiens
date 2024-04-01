@@ -6,6 +6,50 @@ A fast, personal handmade vegan recipe website.
 
 We use it quite often to cook our favourite recipes again and again.
 
+## Nginx config
+
+```
+server {
+    listen 80 default_server;
+    server_name _;
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name www.veganosapiens.com veganosapiens.com;
+
+    # Disable caching
+    add_header Cache-Control "no-cache";
+
+    # Enable sendfile
+    sendfile on;
+    sendfile_max_chunk 1m;
+
+    # TCP optimizations
+    tcp_nopush on;
+    tcp_nodelay on;
+
+    # Text compression
+    gzip on;
+    gzip_types
+            text/css
+            text/javascript
+            image/svg+xml;
+
+    root /var/www/Veganosapiens;
+    index index.html;
+
+    ssl_certificate /etc/letsencrypt/live/veganosapiens.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/veganosapiens.com/privkey.pem;
+
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+```
+
 ## License
 
 Copyright 2023 Pablo Jiménez Mateo
