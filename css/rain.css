@@ -126,7 +126,16 @@ body {
   transition: opacity 0.1s;
 }
 
-#volume-slider::-webkit-slider-thumb,
+#volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #a3a3a3;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
 #volume-slider::-moz-range-thumb {
   appearance: none;
   width: 20px;
