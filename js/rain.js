@@ -62,8 +62,9 @@ function loadAudioFile(url, callback) {
     .catch((err) => console.error(err));
 }
 
-function onVolumeSliderChange() {
-  gainNode.gain.value = this.value / 100;
+function onVolumeSliderChange(event) {
+  const desiredVolume = document.getElementById("volume-slider").value / 100;
+  gainNode.gain.setValueAtTime(desiredVolume, audioContext.currentTime);
 }
 
 function onPlayPauseButtonClick() {
