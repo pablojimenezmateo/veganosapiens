@@ -10,21 +10,33 @@ We use it quite often to cook our favourite recipes again and again.
 
 ```
 server {
-    listen 80 default_server;
-    server_name _;
-    location / {
-        return 301 https://$host$request_uri;
-    }
+    listen 80;
+    server_name veganosapiens.com www.veganosapiens.com;
+    return 301 https://veganosapiens.com$request_uri;
 }
 
 server {
     listen 443 ssl;
+    server_name www.veganosapiens.com;
+    return 301 https://veganosapiens.com$request_uri;
+
+    # SSL certificates
+    ssl_certificate /etc/letsencrypt/live/veganosapiens.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/veganosapiens.com/privkey.pem;
+
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;   # managed by Certbot
+}
+
+server {
+    listen 443 ssl default_server;
     server_name www.veganosapiens.com veganosapiens.com;
 
     # Disable caching
     add_header Cache-Control "no-cache";
+    add_header X-Debug-Server veganosapiens;
 
-    # Enable sendfile
+    # Enable sendfile (should be faster)
     sendfile on;
     sendfile_max_chunk 1m;
 
