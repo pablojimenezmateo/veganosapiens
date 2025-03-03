@@ -1,4 +1,4 @@
-# Veganosapiens
+# Vegano sapiens
 
 URL: [https://veganosapiens.com](https://veganosapiens.com)
 
